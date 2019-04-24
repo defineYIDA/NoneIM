@@ -2,6 +2,7 @@ package com.none.im;
 
 
 import io.netty.bootstrap.Bootstrap;
+import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
@@ -25,16 +26,18 @@ public class NettyClient {
                 .handler(new ChannelInitializer<SocketChannel>() {
                     @Override
                     public void initChannel(SocketChannel ch) {
+                        ch.pipeline().addLast(new EchoClientHandler());
                     }
                 });
         // 4.建立连接
-        bootstrap.connect("localhost", 80).addListener( future -> {
+        bootstrap.connect("localhost", 8080).addListener( future -> {
             if (future.isSuccess()) {
                 System.out.println("连接成功!");
             } else {
                 System.err.println("连接失败!");
             }
-
         });
+        /*ChannelFuture f= bootstrap.connect("localhost", 80).sync();
+        f.channel().closeFuture().sync();*/
     }
 }
