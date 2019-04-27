@@ -6,6 +6,8 @@ import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 import io.netty.util.CharsetUtil;
 
+import java.util.Scanner;
+
 /**
  * @Author: zl
  * @Date: 2019/4/24 0:48
@@ -13,7 +15,15 @@ import io.netty.util.CharsetUtil;
 public class EchoClientHandler extends SimpleChannelInboundHandler<ByteBuf> {
     @Override
     public void channelActive(ChannelHandlerContext ctx) throws Exception {
-        ctx.writeAndFlush(Unpooled.copiedBuffer("from client !", CharsetUtil.UTF_8));
+        Scanner sc = new Scanner(System.in);
+        String str="";
+        while (sc.hasNext()) {
+            String newStr=sc.next();
+            if("end".equals(newStr))
+                break;
+            str =str.concat(newStr);
+        }
+        ctx.writeAndFlush(Unpooled.copiedBuffer(str, CharsetUtil.UTF_8));
     }
 
     @Override
