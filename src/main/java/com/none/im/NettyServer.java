@@ -25,25 +25,34 @@ public class NettyServer {
 
         ServerBootstrap serverBootstrap = new ServerBootstrap();
         serverBootstrap
-                //配置两大线程组
+                //配置两大线程组， NIO模式对应的线程组，accptor/Poller
                 .group(bossGroup, workerGroup)
                 //NIO模式
                 .channel(NioServerSocketChannel.class)
-                //回调
+                //回调，
                 .childHandler(new ChannelInitializer<NioSocketChannel>() {
                     protected void initChannel(NioSocketChannel ch) {
                         ch.pipeline().addLast(new EchoServerHandler());
                     }
                 });
         int port =8080;
-        //方式一： new GenericFutureListener<Future<? super Void>>()
         serverBootstrap.bind(port).addListener( future-> {
             if(future.isSuccess()){
                 System.out.print("监听端口["+port+"]成功");
             }else {
+                //从future中检索Throwable
+                Throwable cause=future.cause();
+                cause.printStackTrace();
                 System.out.print("监听端口["+port+"]失败");
             }
         });
+        //方式一： new GenericFutureListener<Future<? super Void>>()
+        /*serverBootstrap.bind(port).addListener(new GenericFutureListener<Future<? super Void>>() {
+            @Override
+            public void operationComplete(Future<? super Void> future) throws Exception {
+
+            }
+        });*/
         /*ChannelFuture f=serverBootstrap.bind(port).sync();
         f.channel().closeFuture().sync();*/
     }
