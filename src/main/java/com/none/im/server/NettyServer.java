@@ -1,5 +1,6 @@
-package com.none.im;
+package com.none.im.server;
 
+import com.none.im.server.handler.EchoServerHandler;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.nio.NioEventLoopGroup;

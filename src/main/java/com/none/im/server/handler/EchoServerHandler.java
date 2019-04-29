@@ -1,4 +1,4 @@
-package com.none.im;
+package com.none.im.server.handler;
 
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
@@ -15,6 +15,12 @@ import io.netty.util.CharsetUtil;
  */
 @ChannelHandler.Sharable
 public class EchoServerHandler extends ChannelInboundHandlerAdapter {
+    /**
+     * client发来请求后调用
+     * @param ctx
+     * @param msg
+     * @throws Exception
+     */
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
         ByteBuf in=(ByteBuf)msg;//输入流
@@ -36,4 +42,19 @@ public class EchoServerHandler extends ChannelInboundHandlerAdapter {
         cause.printStackTrace();
         ctx.close();
     }
+
+    @Override
+    public void channelActive(ChannelHandlerContext ctx) throws Exception {
+
+        // 1. 获取二进制抽象 ByteBuf
+        ByteBuf buffer = ctx.alloc().buffer();
+        // 2. 准备数据，指定字符串的字符集为 utf-8
+        byte[] bytes = "连接ok".getBytes(CharsetUtil.UTF_8);
+
+        // 3. 填充数据到 ByteBuf
+        buffer.writeBytes(bytes);
+
+        ctx.writeAndFlush(buffer);
+    }
+
 }
