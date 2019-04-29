@@ -1,23 +1,17 @@
 package com.none.im;
 
 import io.netty.bootstrap.ServerBootstrap;
-import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
 import io.netty.channel.socket.nio.NioSocketChannel;
-import io.netty.util.concurrent.Future;
-import io.netty.util.concurrent.GenericFutureListener;
-
-import java.nio.channels.AsynchronousServerSocketChannel;
-import java.nio.channels.AsynchronousSocketChannel;
 
 /**
  * @Author: zl
  * @Date: 2019/4/23 0:53
  */
 public class NettyServer {
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) {
         //定义两大线程组，这种方式类似于AIO中的AsynchronousChannelGroupchannelGroup，
         //提前设置工作或者是接收线程组
         NioEventLoopGroup bossGroup = new NioEventLoopGroup();
@@ -32,6 +26,7 @@ public class NettyServer {
                 //回调，
                 .childHandler(new ChannelInitializer<NioSocketChannel>() {
                     protected void initChannel(NioSocketChannel ch) {
+                        //ChannelPipeline，是实例链
                         ch.pipeline().addLast(new EchoServerHandler());
                     }
                 });
