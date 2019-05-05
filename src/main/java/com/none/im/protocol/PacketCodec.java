@@ -17,13 +17,14 @@ import static com.none.im.protocol.command.Command.LOGIN_REQUEST;
  * 自定义协议的编解码器
  */
 public class PacketCodec {
+    public static final PacketCodec INSTANCE = new PacketCodec();
 
     private static final int MAGIC_NUMBER = 0x12345678;
 
     private final Map<Byte, Class<? extends Packet>> packetTypeMap;
     private final Map<Byte, Serializer> serializerMap;
 
-    public PacketCodec() {
+    private PacketCodec() {
         packetTypeMap = new HashMap<>();
         packetTypeMap.put(LOGIN_REQUEST, LoginRequestPacket.class);
 
@@ -34,12 +35,13 @@ public class PacketCodec {
 
     /**
      * 编码
+     * @param byteBuf
      * @param packet
      * @return
      */
-    public ByteBuf encode(Packet packet) {
+    public ByteBuf encode(ByteBuf byteBuf,Packet packet) {
         // 1. 创建ByteBuf 对象
-        ByteBuf byteBuf = ByteBufAllocator.DEFAULT.ioBuffer();
+        //ByteBuf byteBuf = ByteBufAllocator.DEFAULT.ioBuffer();
         //2. 序列化对象
         byte[] bytes = Serializer.DEFAULT.serialize(packet);
 

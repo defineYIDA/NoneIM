@@ -1,6 +1,7 @@
 package com.none.im.server;
 
 import com.none.im.server.handler.EchoServerHandler;
+import com.none.im.server.handler.LoginRequestHandler;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.nio.NioEventLoopGroup;
@@ -28,7 +29,9 @@ public class NettyServer {
                 .childHandler(new ChannelInitializer<NioSocketChannel>() {
                     protected void initChannel(NioSocketChannel ch) {
                         //ChannelPipeline，是实例链
-                        ch.pipeline().addLast(new EchoServerHandler());
+                        //ch.pipeline().addLast(new EchoServerHandler());
+                        //登入处理器
+                        ch.pipeline().addLast(new LoginRequestHandler());
                     }
                 });
         int port =8080;

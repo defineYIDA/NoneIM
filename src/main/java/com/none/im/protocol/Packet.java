@@ -1,5 +1,6 @@
 package com.none.im.protocol;
 
+import com.alibaba.fastjson.annotation.JSONField;
 import com.none.im.protocol.command.Command;
 import lombok.Data;
 
@@ -12,12 +13,14 @@ public abstract class Packet {
     /**
      * 协议版本
      */
+    @JSONField(deserialize = false,serialize = false)
     private Byte version = 1;
 
     /**
      * 获得指令
      * @return
      */
+    @JSONField(serialize = false)
     public abstract Byte getCommand();
 
 }

@@ -6,5 +6,8 @@ package com.none.im.protocol.command;
  * 命令标识
  */
 public interface Command {
+
     Byte LOGIN_REQUEST = 1;
+
+    Byte LOGIN_RESPONSE = 2;
 }

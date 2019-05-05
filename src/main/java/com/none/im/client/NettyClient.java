@@ -2,6 +2,7 @@ package com.none.im.client;
 
 
 import com.none.im.client.handler.EchoClientHandler;
+import com.none.im.client.handler.LoginResponseHandler;
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.nio.NioEventLoopGroup;
@@ -32,7 +33,9 @@ public class NettyClient {
                 .handler(new ChannelInitializer<SocketChannel>() {
                     @Override
                     public void initChannel(SocketChannel ch) {
-                        ch.pipeline().addLast(new EchoClientHandler());
+                        //ch.pipeline().addLast(new EchoClientHandler());
+                        //登陆响应处理器
+                        ch.pipeline().addLast(new LoginResponseHandler());
                     }
                 });
         connect(bootstrap,"localhost",8080,MAX_RETRY);
