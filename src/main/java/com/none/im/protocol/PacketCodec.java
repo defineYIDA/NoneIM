@@ -1,21 +1,26 @@
 package com.none.im.protocol;
 
 import com.none.im.protocol.request.LoginRequestPacket;
+import com.none.im.protocol.request.MessageRequestPacket;
+import com.none.im.protocol.response.LoginResponsePacket;
+import com.none.im.protocol.response.MessageResponsePacket;
 import com.none.im.serialize.Serializer;
 import com.none.im.serialize.impl.JSONSerializer;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.ByteBufAllocator;
+import lombok.extern.slf4j.Slf4j;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import static com.none.im.protocol.command.Command.LOGIN_REQUEST;
+import static com.none.im.protocol.command.Command.*;
 
 /**
  * @Author: zl
  * @Date: 2019/5/4 23:30
  * 自定义协议的编解码器
  */
+@Slf4j
 public class PacketCodec {
     public static final PacketCodec INSTANCE = new PacketCodec();
 
@@ -27,7 +32,9 @@ public class PacketCodec {
     private PacketCodec() {
         packetTypeMap = new HashMap<>();
         packetTypeMap.put(LOGIN_REQUEST, LoginRequestPacket.class);
-
+        packetTypeMap.put(LOGIN_RESPONSE, LoginResponsePacket.class);
+        packetTypeMap.put(MESSAGE_REQUEST, MessageRequestPacket.class);
+        packetTypeMap.put(MESSAGE_RESPONSE, MessageResponsePacket.class);
         serializerMap = new HashMap<>();
         Serializer serializer = new JSONSerializer();
         serializerMap.put(serializer.getSerializerAlgorithm(),serializer);
@@ -80,6 +87,8 @@ public class PacketCodec {
         if(requestType != null && serializer != null) {
             //解码
             return serializer.deserialize(requestType,bytes);
+        } else {
+            System.out.println("指令或者序列化算法不存在！");
         }
         return null;
     }
