@@ -3,6 +3,9 @@ package com.none.im.client;
 
 import com.none.im.client.handler.EchoClientHandler;
 import com.none.im.client.handler.LoginResponseHandler;
+import com.none.im.client.handler.MessageResponseHandler;
+import com.none.im.codec.PacketDecoder;
+import com.none.im.codec.PacketEncoder;
 import com.none.im.protocol.PacketCodec;
 import com.none.im.protocol.request.MessageRequestPacket;
 import com.none.im.util.SessionUtil;
@@ -41,8 +44,10 @@ public class NettyClient {
                     @Override
                     public void initChannel(SocketChannel ch) {
                         //ch.pipeline().addLast(new EchoClientHandler());
-                        //登陆响应处理器
+                        ch.pipeline().addLast(new PacketDecoder());
                         ch.pipeline().addLast(new LoginResponseHandler());
+                        ch.pipeline().addLast(new MessageResponseHandler());
+                        ch.pipeline().addLast(new PacketEncoder());
                     }
                 });
         connect(bootstrap,"localhost",8080,MAX_RETRY);

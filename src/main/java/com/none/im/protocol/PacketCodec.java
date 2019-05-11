@@ -7,8 +7,6 @@ import com.none.im.protocol.response.MessageResponsePacket;
 import com.none.im.serialize.Serializer;
 import com.none.im.serialize.impl.JSONSerializer;
 import io.netty.buffer.ByteBuf;
-import io.netty.buffer.ByteBufAllocator;
-import lombok.extern.slf4j.Slf4j;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -20,7 +18,6 @@ import static com.none.im.protocol.command.Command.*;
  * @Date: 2019/5/4 23:30
  * 自定义协议的编解码器
  */
-@Slf4j
 public class PacketCodec {
     public static final PacketCodec INSTANCE = new PacketCodec();
 
