@@ -6,6 +6,7 @@ import com.none.im.client.handler.LoginResponseHandler;
 import com.none.im.client.handler.MessageResponseHandler;
 import com.none.im.codec.PacketDecoder;
 import com.none.im.codec.PacketEncoder;
+import com.none.im.codec.Spliter;
 import com.none.im.protocol.PacketCodec;
 import com.none.im.protocol.request.MessageRequestPacket;
 import com.none.im.util.SessionUtil;
@@ -44,6 +45,7 @@ public class NettyClient {
                     @Override
                     public void initChannel(SocketChannel ch) {
                         //ch.pipeline().addLast(new EchoClientHandler());
+                        ch.pipeline().addLast(new Spliter());
                         ch.pipeline().addLast(new PacketDecoder());
                         ch.pipeline().addLast(new LoginResponseHandler());
                         ch.pipeline().addLast(new MessageResponseHandler());

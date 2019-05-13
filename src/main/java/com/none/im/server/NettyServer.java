@@ -2,6 +2,7 @@ package com.none.im.server;
 
 import com.none.im.codec.PacketDecoder;
 import com.none.im.codec.PacketEncoder;
+import com.none.im.codec.Spliter;
 import com.none.im.server.handler.EchoServerHandler;
 import com.none.im.server.handler.LoginRequestHandler;
 import com.none.im.server.handler.MessageRequestHandler;
@@ -33,6 +34,7 @@ public class NettyServer {
                     protected void initChannel(NioSocketChannel ch) {
                         //ChannelPipeline，是实例链
                         //ch.pipeline().addLast(new EchoServerHandler());
+                        ch.pipeline().addLast(new Spliter());
                         ch.pipeline().addLast(new PacketDecoder());
                         ch.pipeline().addLast(new LoginRequestHandler());
                         ch.pipeline().addLast(new MessageRequestHandler());
