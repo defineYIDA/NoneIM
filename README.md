@@ -17,4 +17,4 @@ serialize:
 ```
 ### Solve
 
-[粘包和半包的原因使用WireShark分析](https://img.shields.io/github/issues/defineYIDA/NoneIM/issues/6.svg)
+[粘包和半包的原因使用WireShark分析](https://github.com/defineYIDA/NoneIM/issues/6)
