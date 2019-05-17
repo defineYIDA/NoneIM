@@ -31,20 +31,23 @@ public class LoginResponseHandler extends SimpleChannelInboundHandler<LoginRespo
         loginRequestPacket.setUsername("flash");
         loginRequestPacket.setPassword("pwd");
 
-        // 编码
-        ByteBuf buffer = PacketCodec.INSTANCE.encode(ctx.alloc().ioBuffer(), loginRequestPacket);
-
         // 写数据
-        ctx.channel().writeAndFlush(buffer);
+        ctx.channel().writeAndFlush(loginRequestPacket);
     }
 
     @Override
     protected void channelRead0(ChannelHandlerContext channelHandlerContext, LoginResponsePacket loginResponsePacket) throws Exception {
         if (loginResponsePacket.isSuccess()) {
-            SessionUtil.markAsLogin(channelHandlerContext.channel());
+            //这里不应该出现mark登陆的操作
+            //SessionUtil.markAsLogin(channelHandlerContext.channel());
             System.out.println(new Date() + ": 客户端登录成功");
         } else {
             System.out.println(new Date() + ": 客户端登录失败，原因：" + loginResponsePacket.getReason());
         }
+    }
+
+    @Override
+    public void channelInactive(ChannelHandlerContext ctx) throws Exception {
+        System.out.println("客户端连接被关闭!");
     }
 }
