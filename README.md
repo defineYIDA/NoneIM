@@ -15,4 +15,6 @@ serialize:
 <artifactId>fastjson</artifactId>
 <version>1.2.29</version>
 ```
+### Solve
 
+[粘包和半包的原因使用WireShark分析](https://github.com/defineYIDA/NoneIM/issues/6)
