@@ -1,5 +1,6 @@
 package com.none.im.attribute;
 
+import com.none.im.session.Session;
 import io.netty.util.AttributeKey;
 
 /**
@@ -7,5 +8,5 @@ import io.netty.util.AttributeKey;
  * @Date: 2019/5/6 22:59
  */
 public interface Attributes {
-    AttributeKey<Boolean> LOGIN = AttributeKey.newInstance("login");
+    AttributeKey<Session> SESSION = AttributeKey.newInstance("session");
 }
