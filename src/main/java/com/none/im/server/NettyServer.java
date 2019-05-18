@@ -3,10 +3,7 @@ package com.none.im.server;
 import com.none.im.codec.PacketDecoder;
 import com.none.im.codec.PacketEncoder;
 import com.none.im.codec.Spliter;
-import com.none.im.server.handler.AuthHandler;
-import com.none.im.server.handler.EchoServerHandler;
-import com.none.im.server.handler.LoginRequestHandler;
-import com.none.im.server.handler.MessageRequestHandler;
+import com.none.im.server.handler.*;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.nio.NioEventLoopGroup;
@@ -40,6 +37,8 @@ public class NettyServer {
                         ch.pipeline().addLast(new LoginRequestHandler());
                         ch.pipeline().addLast(AuthHandler.INSTANCE);//用户认证
                         ch.pipeline().addLast(new MessageRequestHandler());
+                        ch.pipeline().addLast(new CreateGroupRequestHandler());
+                        ch.pipeline().addLast(new LogoutRequestHandler());
                         ch.pipeline().addLast(new PacketEncoder());
                     }
                 });

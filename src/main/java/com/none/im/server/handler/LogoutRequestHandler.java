@@ -1,0 +1,23 @@
+package com.none.im.server.handler;
+
+import com.none.im.protocol.request.LogoutRequestPacket;
+import com.none.im.protocol.response.LogoutResponsePacket;
+import com.none.im.util.SessionUtil;
+import io.netty.channel.ChannelHandlerContext;
+import io.netty.channel.SimpleChannelInboundHandler;
+
+/**
+ * @Author: zl
+ * @Date: 2019/5/19 1:31
+ */
+public class LogoutRequestHandler extends SimpleChannelInboundHandler<LogoutRequestPacket> {
+
+    @Override
+    protected void channelRead0(ChannelHandlerContext ctx, LogoutRequestPacket msg) {
+        System.out.println("用户：["+ SessionUtil.getSession(ctx.channel()).getUserName() + "] 已注销！");
+        SessionUtil.unBindSession(ctx.channel());
+        LogoutResponsePacket logoutResponsePacket = new LogoutResponsePacket();
+        logoutResponsePacket.setSuccess(true);
+        ctx.channel().writeAndFlush(logoutResponsePacket);
+    }
+}

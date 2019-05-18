@@ -1,8 +1,12 @@
 package com.none.im.protocol;
 
+import com.none.im.protocol.request.CreateGroupRequestPacket;
 import com.none.im.protocol.request.LoginRequestPacket;
+import com.none.im.protocol.request.LogoutRequestPacket;
 import com.none.im.protocol.request.MessageRequestPacket;
+import com.none.im.protocol.response.CreateGroupResponsePacket;
 import com.none.im.protocol.response.LoginResponsePacket;
+import com.none.im.protocol.response.LogoutResponsePacket;
 import com.none.im.protocol.response.MessageResponsePacket;
 import com.none.im.serialize.Serializer;
 import com.none.im.serialize.impl.JSONSerializer;
@@ -32,6 +36,11 @@ public class PacketCodec {
         packetTypeMap.put(LOGIN_RESPONSE, LoginResponsePacket.class);
         packetTypeMap.put(MESSAGE_REQUEST, MessageRequestPacket.class);
         packetTypeMap.put(MESSAGE_RESPONSE, MessageResponsePacket.class);
+        packetTypeMap.put(LOGOUT_REQUEST, LogoutRequestPacket.class);
+        packetTypeMap.put(LOGOUT_RESPONSE, LogoutResponsePacket.class);
+        packetTypeMap.put(CREATE_GROUP_REQUEST, CreateGroupRequestPacket.class);
+        packetTypeMap.put(CREATE_GROUP_RESPONSE, CreateGroupResponsePacket.class);
+
         serializerMap = new HashMap<>();
         Serializer serializer = new JSONSerializer();
         serializerMap.put(serializer.getSerializerAlgorithm(),serializer);

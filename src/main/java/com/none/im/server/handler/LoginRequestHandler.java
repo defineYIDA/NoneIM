@@ -7,6 +7,8 @@ import com.none.im.protocol.request.MessageRequestPacket;
 import com.none.im.protocol.response.LoginResponsePacket;
 import com.none.im.protocol.response.MessageResponsePacket;
 import com.none.im.session.Session;
+
+import com.none.im.util.IDUtil;
 import com.none.im.util.SessionUtil;
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
@@ -14,7 +16,6 @@ import io.netty.channel.ChannelInboundHandlerAdapter;
 import io.netty.channel.SimpleChannelInboundHandler;
 
 import java.util.Date;
-import java.util.UUID;
 
 /**
  * @Author: zl
@@ -33,7 +34,7 @@ public class LoginRequestHandler extends SimpleChannelInboundHandler<LoginReques
         if (valid(loginRequestPacket)) {
             loginResponsePacket.setSuccess(true);
             //登陆成功后,注册session
-            String userId = randomUserId();
+            String userId = IDUtil.randomId();
             loginResponsePacket.setUserId(userId);
             System.out.println(new Date() + ": 登录成功!");
             //在登陆成功时给连接分配一个userId，类似于sessionId，在真实环境中标识接收方还是
@@ -52,7 +53,5 @@ public class LoginRequestHandler extends SimpleChannelInboundHandler<LoginReques
         return true;
     }
 
-    private static String randomUserId() {
-        return UUID.randomUUID().toString().split("-")[0];
-    }
+
 }
