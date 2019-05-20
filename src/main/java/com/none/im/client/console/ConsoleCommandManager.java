@@ -4,9 +4,7 @@ import com.none.im.util.SessionUtil;
 import io.netty.channel.Channel;
 
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Scanner;
+import java.util.*;
 
 /**
  * @Author: zl
@@ -21,6 +19,17 @@ public class ConsoleCommandManager implements ConsoleCommand {
         consoleCommandMap.put("sendToUser", new SendToUserConsoleCommand());
         consoleCommandMap.put("createGroup", new CreateGroupConsoleCommand());
         consoleCommandMap.put("logout", new LogoutConsoleCommand());
+        consoleCommandMap.put("joinGroup", new JoinGroupConsoleCommand());
+        consoleCommandMap.put("quitGroup", new QuitGroupConsoleCommand());
+        consoleCommandMap.put("listGroupMembers", new ListGroupMembersConsoleCommand());
+        consoleCommandMap.put("showCmd", new ShowConsoleCommand());
+        consoleCommandMap.put("sendToGroup", new SendToGroupConsoleCommand());
+    }
+
+    public List<String> getCmd() {
+        List<String> cmd = new ArrayList<>();
+        cmd.addAll(consoleCommandMap.keySet());
+        return cmd;
     }
 
     @Override

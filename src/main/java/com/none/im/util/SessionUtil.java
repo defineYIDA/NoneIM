@@ -3,6 +3,7 @@ package com.none.im.util;
 import com.none.im.attribute.Attributes;
 import com.none.im.session.Session;
 import io.netty.channel.Channel;
+import io.netty.channel.group.ChannelGroup;
 import io.netty.util.Attribute;
 
 import java.util.Map;
@@ -17,6 +18,8 @@ public class SessionUtil {
      * 放这其实不太合适，该映射应该是context域
      */
     private static final Map<String, Channel> channelMap = new ConcurrentHashMap<>();
+
+    private static final Map<String, ChannelGroup> channelGroupMap = new ConcurrentHashMap<>();
 
     private static void markAsLogin(Channel channel, Session session) {
         //注意这个参数的作用域，session域
@@ -45,5 +48,13 @@ public class SessionUtil {
 
     public static Channel getChannel(String userId) {
         return channelMap.get(userId);
+    }
+
+    public static void bindChannelGroup(String groupId, ChannelGroup channelGroup) {
+        channelGroupMap.put(groupId, channelGroup);
+    }
+
+    public static ChannelGroup getChannelGroup(String groupId) {
+        return channelGroupMap.get(groupId);
     }
 }

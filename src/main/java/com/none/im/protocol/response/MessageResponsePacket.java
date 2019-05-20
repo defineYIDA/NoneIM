@@ -22,4 +22,12 @@ public class MessageResponsePacket extends Packet {
     public Byte getCommand() {
         return MESSAGE_RESPONSE;
     }
+
+    public static MessageResponsePacket exceptionMsg(String msg) {
+        MessageResponsePacket responsePacket = new MessageResponsePacket();
+        responsePacket.setMessage(msg);
+        responsePacket.setFromUserId("Exception");
+        responsePacket.setFromUserName("Server");
+        return responsePacket;
+    }
 }

@@ -11,6 +11,7 @@ import com.none.im.codec.Spliter;
 import com.none.im.protocol.PacketCodec;
 import com.none.im.protocol.request.LoginRequestPacket;
 import com.none.im.protocol.request.MessageRequestPacket;
+import com.none.im.server.handler.ShowCmdRequestHandler;
 import com.none.im.util.SessionUtil;
 import io.netty.bootstrap.Bootstrap;
 import io.netty.buffer.ByteBuf;
@@ -53,6 +54,14 @@ public class NettyClient {
                         ch.pipeline().addLast(new MessageResponseHandler());
                         ch.pipeline().addLast(new LogoutResponseHandler());
                         ch.pipeline().addLast(new CreateGroupResponseHandler());
+                        // 加群响应处理器
+                        ch.pipeline().addLast(new JoinGroupResponseHandler());
+                        // 获取群成员响应处理器
+                        ch.pipeline().addLast(new ListGroupMembersResponseHandler());
+                        // 退群响应处理器
+                        ch.pipeline().addLast(new QuitGroupResponseHandler());
+                        //查看命令
+                        ch.pipeline().addLast(new ShowCmdResponseHandler());
                         ch.pipeline().addLast(new PacketEncoder());
                     }
                 });
