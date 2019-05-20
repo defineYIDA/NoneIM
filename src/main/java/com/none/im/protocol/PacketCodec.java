@@ -42,7 +42,8 @@ public class PacketCodec {
         packetTypeMap.put(LIST_GROUP_MEMBERS_RESPONSE, ListGroupMembersResponsePacket.class);
         packetTypeMap.put(SHOW_CMD_REQUEST, ShowCmdRequestPacket.class);
         packetTypeMap.put(SHOW_CMD_RESPONSE, ShowCmdResponsePacket.class);
-
+        packetTypeMap.put(GROUP_MESSAGE_REQUEST, GroupMessageRequestPacket.class);
+        packetTypeMap.put(GROUP_MESSAGE_RESPONSE, GroupMessageResponsePacket.class);
 
         serializerMap = new HashMap<>();
         Serializer serializer = new JSONSerializer();
@@ -95,7 +96,7 @@ public class PacketCodec {
 
         if(requestType != null && serializer != null) {
             //解码
-            return serializer.deserialize(requestType,bytes);
+            return serializer.deserialize(requestType, bytes);
         } else {
             System.out.println("指令或者序列化算法不存在！");
         }

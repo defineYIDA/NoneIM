@@ -4,6 +4,7 @@ import com.none.im.protocol.request.QuitGroupRequestPacket;
 import com.none.im.protocol.response.MessageResponsePacket;
 import com.none.im.protocol.response.QuitGroupResponsePacket;
 import com.none.im.util.SessionUtil;
+import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 import io.netty.channel.group.ChannelGroup;
@@ -12,7 +13,13 @@ import io.netty.channel.group.ChannelGroup;
  * @Author: zl
  * @Date: 2019/5/20 0:09
  */
+@ChannelHandler.Sharable
 public class QuitGroupRequestHandler extends SimpleChannelInboundHandler<QuitGroupRequestPacket> {
+    public static final QuitGroupRequestHandler INSTANCE = new QuitGroupRequestHandler();
+
+    private QuitGroupRequestHandler() {
+
+    }
     @Override
     protected void channelRead0(ChannelHandlerContext ctx, QuitGroupRequestPacket requestPacket) throws Exception{
         //1. 获取群对应的 channelGroup，然后将当前用户的 channel 移除

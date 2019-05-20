@@ -3,6 +3,7 @@ package com.none.im.server.handler;
 import com.none.im.protocol.request.LogoutRequestPacket;
 import com.none.im.protocol.response.LogoutResponsePacket;
 import com.none.im.util.SessionUtil;
+import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 
@@ -10,7 +11,13 @@ import io.netty.channel.SimpleChannelInboundHandler;
  * @Author: zl
  * @Date: 2019/5/19 1:31
  */
+@ChannelHandler.Sharable
 public class LogoutRequestHandler extends SimpleChannelInboundHandler<LogoutRequestPacket> {
+    public static final LogoutRequestHandler INSTANCE = new LogoutRequestHandler();
+
+    private LogoutRequestHandler() {
+
+    }
 
     @Override
     protected void channelRead0(ChannelHandlerContext ctx, LogoutRequestPacket msg) {

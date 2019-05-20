@@ -1,6 +1,7 @@
 package com.none.im.server;
 
 import com.none.im.client.handler.ShowCmdResponseHandler;
+import com.none.im.codec.PacketCodecHandler;
 import com.none.im.codec.PacketDecoder;
 import com.none.im.codec.PacketEncoder;
 import com.none.im.codec.Spliter;
@@ -34,21 +35,11 @@ public class NettyServer {
                         //ChannelPipeline，是实例链
                         //ch.pipeline().addLast(new EchoServerHandler());
                         ch.pipeline().addLast(new Spliter());
-                        ch.pipeline().addLast(new PacketDecoder());
-                        ch.pipeline().addLast(new LoginRequestHandler());
+                        ch.pipeline().addLast(PacketCodecHandler.INSTANCE);
+                        ch.pipeline().addLast(LoginRequestHandler.INSTANCE);
                         ch.pipeline().addLast(AuthHandler.INSTANCE);//用户认证
-                        ch.pipeline().addLast(new MessageRequestHandler());
-                        ch.pipeline().addLast(new CreateGroupRequestHandler());
-                        // 加群请求处理器
-                        ch.pipeline().addLast(new JoinGroupRequestHandler());
-                        // 获取群成员请求处理器
-                        ch.pipeline().addLast(new ListGroupMembersRequestHandler());
-                        // 退群请求处理器
-                        ch.pipeline().addLast(new QuitGroupRequestHandler());
-                        //查看命令
-                        ch.pipeline().addLast(new ShowCmdRequestHandler());
-                        ch.pipeline().addLast(new LogoutRequestHandler());
-                        ch.pipeline().addLast(new PacketEncoder());
+                        ch.pipeline().addLast(IMHandler.INSTANCE);
+
                     }
                 });
         int port =8080;
