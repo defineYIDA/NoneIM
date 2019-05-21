@@ -20,7 +20,6 @@ public class HeartBeatRequestHandler extends SimpleChannelInboundHandler<HeartBe
 
     @Override
     protected void channelRead0(ChannelHandlerContext ctx, HeartBeatRequestPacket requestPacket) {
-        System.out.println(".");
         ctx.writeAndFlush(new HeartBeatResponsePacket());
     }
 }
