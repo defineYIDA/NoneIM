@@ -5,6 +5,7 @@ import com.none.im.codec.PacketCodecHandler;
 import com.none.im.codec.PacketDecoder;
 import com.none.im.codec.PacketEncoder;
 import com.none.im.codec.Spliter;
+import com.none.im.handler.IMIdleStateHandler;
 import com.none.im.server.handler.*;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelInitializer;
@@ -34,9 +35,12 @@ public class NettyServer {
                     protected void initChannel(NioSocketChannel ch) {
                         //ChannelPipeline，是实例链
                         //ch.pipeline().addLast(new EchoServerHandler());
+                        //空闲检测
+                        ch.pipeline().addLast(new IMIdleStateHandler());
                         ch.pipeline().addLast(new Spliter());
                         ch.pipeline().addLast(PacketCodecHandler.INSTANCE);
                         ch.pipeline().addLast(LoginRequestHandler.INSTANCE);
+                        ch.pipeline().addLast(HeartBeatRequestHandler.INSTANCE);
                         ch.pipeline().addLast(AuthHandler.INSTANCE);//用户认证
                         ch.pipeline().addLast(IMHandler.INSTANCE);
 

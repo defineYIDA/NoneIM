@@ -42,4 +42,8 @@ public interface Command {
     Byte GROUP_MESSAGE_REQUEST = 17;
 
     Byte GROUP_MESSAGE_RESPONSE = 18;
+
+    Byte HEARTBEAT_REQUEST = 19;
+
+    Byte HEARTBEAT_RESPONSE = 20;
 }

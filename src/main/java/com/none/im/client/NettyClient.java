@@ -8,6 +8,7 @@ import com.none.im.client.handler.*;
 import com.none.im.codec.PacketDecoder;
 import com.none.im.codec.PacketEncoder;
 import com.none.im.codec.Spliter;
+import com.none.im.handler.IMIdleStateHandler;
 import com.none.im.protocol.PacketCodec;
 import com.none.im.protocol.request.LoginRequestPacket;
 import com.none.im.protocol.request.MessageRequestPacket;
@@ -48,6 +49,8 @@ public class NettyClient {
                     @Override
                     public void initChannel(SocketChannel ch) {
                         //ch.pipeline().addLast(new EchoClientHandler());
+                        // 空闲检测
+                        ch.pipeline().addLast(new IMIdleStateHandler());
                         ch.pipeline().addLast(new Spliter());
                         ch.pipeline().addLast(new PacketDecoder());
                         ch.pipeline().addLast(new LoginResponseHandler());
@@ -65,6 +68,9 @@ public class NettyClient {
                         // 群消息响应
                         ch.pipeline().addLast(new GroupMessageResponseHandler());
                         ch.pipeline().addLast(new PacketEncoder());
+
+                        // 心跳定时器
+                        ch.pipeline().addLast(new HeartBeatTimerHandler());
                     }
                 });
         connect(bootstrap,"localhost",8080,MAX_RETRY);
