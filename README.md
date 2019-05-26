@@ -18,3 +18,7 @@ serialize:
 ### Solve
 
 [粘包和半包的原因使用WireShark分析](https://github.com/defineYIDA/NoneIM/issues/6)
+
+### future
+
+- [ ] 服务器消息推送
