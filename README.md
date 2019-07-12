@@ -23,6 +23,7 @@ serialize:
 
 - [ ] 服务器消息推送,针对在线和离线用户
 - [ ] Redis对用户信息的缓存
+- [ ] proxy实现内网穿透
 - [ ] 新增router层实现负载均衡
 - [ ] zookeeper 实现服务的注册和发现
 - [ ] IM Server的集群（支持横向扩展）
