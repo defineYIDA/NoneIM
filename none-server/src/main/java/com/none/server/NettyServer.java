@@ -9,13 +9,23 @@ import io.netty.channel.ChannelInitializer;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
 import io.netty.channel.socket.nio.NioSocketChannel;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
+
+import javax.annotation.PostConstruct;
 
 /**
  * @Author: zl
  * @Date: 2019/4/23 0:53
  */
+@Component
 public class NettyServer {
-    public static void main(String[] args) {
+
+    @Value("${im.server.port}")
+    private int imServerPort;
+
+    @PostConstruct
+    public void start() {
         //定义两大线程组，这种方式类似于AIO中的AsynchronousChannelGroupchannelGroup，
         //提前设置工作或者是接收线程组
         NioEventLoopGroup bossGroup = new NioEventLoopGroup();
@@ -43,7 +53,7 @@ public class NettyServer {
 
                     }
                 });
-        int port =8080;
+        int port =imServerPort;
         serverBootstrap.bind(port).addListener( future-> {
             if(future.isSuccess()){
                 System.out.print("监听端口["+port+"]成功");
@@ -65,4 +75,6 @@ public class NettyServer {
         f.channel().closeFuture().sync();*/
     }
 
+       /*public static void main(String[] args) {
+    }*/
 }
