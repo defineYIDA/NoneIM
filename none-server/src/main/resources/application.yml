@@ -1,0 +1,25 @@
+spring:
+  application:
+    name: none-server
+
+#port
+server:
+  port: 8081
+
+im:
+  server:
+    #im server port
+    port: 8080
+
+#zk config
+zk:
+  #是否注册zk
+  switch: true
+  #zk地址
+  addr: 0.0.0.0:2181
+  #zk连接超时
+  connect:
+    timeout: 15000
+  #zk注册的根节点
+  root: /server
+

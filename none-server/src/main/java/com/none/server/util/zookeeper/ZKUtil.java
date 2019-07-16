@@ -26,6 +26,7 @@ public class ZKUtil {
     public void createNode(String path) {
         createRootNode();
         zkClient.createEphemeral(path);
+        log.info("注册 zookeeper 成功，msg=[{}]", path);
     }
 
     /**

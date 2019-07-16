@@ -1,4 +1,4 @@
-package com.none.server;
+package com.none.server.Server;
 
 import com.none.common.codec.PacketCodecHandler;
 import com.none.common.codec.Spliter;
@@ -9,6 +9,7 @@ import io.netty.channel.ChannelInitializer;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
 import io.netty.channel.socket.nio.NioSocketChannel;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
@@ -19,6 +20,7 @@ import javax.annotation.PostConstruct;
  * @Date: 2019/4/23 0:53
  */
 @Component
+@Slf4j
 public class NettyServer {
 
     @Value("${im.server.port}")
@@ -56,12 +58,12 @@ public class NettyServer {
         int port =imServerPort;
         serverBootstrap.bind(port).addListener( future-> {
             if(future.isSuccess()){
-                System.out.print("监听端口["+port+"]成功");
+                log.info("监听端口["+port+"]成功");
             }else {
                 //从future中检索Throwable
                 Throwable cause=future.cause();
                 cause.printStackTrace();
-                System.out.print("监听端口["+port+"]失败");
+                log.info("监听端口["+port+"]失败");
             }
         });
         //方式一： new GenericFutureListener<Future<? super Void>>()

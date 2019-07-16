@@ -1,7 +1,8 @@
-package com.none.server.util.zookeeper;
+package com.none.server.Server;
 
 import com.none.server.config.AppConfig;
 import com.none.server.util.SpringBeanFactory;
+import com.none.server.util.zookeeper.ZKUtil;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -34,7 +35,6 @@ public class RegistryZK implements Runnable {
         if (appConfig.isZkSwitch()) {
             String path = appConfig.getZkRoot() + "/ip-" + ip + ":" + imServerPort + ":" + serverPort;
             zkUtil.createNode(path);
-            log.info("注册 zookeeper 成功，msg=[{}]", path);
         }
     }
 }
