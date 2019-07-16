@@ -6,6 +6,7 @@
 
     <groupId>com.none.im</groupId>
     <artifactId>None-IM</artifactId>
+    <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
 
     <build>
@@ -22,6 +23,13 @@
             </plugin>
         </plugins>
     </build>
+    <modules>
+        <module>none-client</module>
+        <module>none-server</module>
+        <module>none-common</module>
+        <module>none-zk</module>
+        <module>none-router</module>
+    </modules>
 
     <properties>
         <netty-all.version>4.1.6.Final</netty-all.version>
