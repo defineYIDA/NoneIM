@@ -25,8 +25,12 @@ public class ZKUtil {
      */
     public void createNode(String path) {
         createRootNode();
-        zkClient.createEphemeral(path);
-        log.info("注册 zookeeper 成功，msg=[{}]", path);
+        if (!zkClient.exists(path)) {
+            zkClient.createEphemeral(path);
+            log.info("注册 zookeeper 成功，msg=[{}]", path);
+        } else {
+            log.error("zookeeper节点[{}]已经存在", path);
+        }
     }
 
     /**

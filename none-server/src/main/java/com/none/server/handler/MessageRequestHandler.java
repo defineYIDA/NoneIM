@@ -27,7 +27,7 @@ public class MessageRequestHandler extends SimpleChannelInboundHandler<MessageRe
 
         // 2.通过消息发送方的会话信息构造要发送的消息
         MessageResponsePacket messageResponsePacket = new MessageResponsePacket();
-        messageResponsePacket.setFromUserId(session.getUserId());
+        messageResponsePacket.setFromSessionID(session.getSessionID());
         messageResponsePacket.setFromUserName(session.getUserName());
         messageResponsePacket.setMessage(messageRequestPacket.getMessage());
 
@@ -44,7 +44,7 @@ public class MessageRequestHandler extends SimpleChannelInboundHandler<MessageRe
         } else {
             //回写到发送方
             messageResponsePacket.setMessage("[" + messageRequestPacket.getToUserId() + "] 不在线，发送失败!");
-            messageResponsePacket.setFromUserId("Server");
+            messageResponsePacket.setFromSessionID("Server");
             messageResponsePacket.setFromUserName("Server");
             ctx.channel().writeAndFlush(messageResponsePacket);
         }

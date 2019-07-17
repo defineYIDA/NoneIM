@@ -1,6 +1,14 @@
 spring:
   application:
     name: none-server
+  redis:
+    host: 127.0.0.1
+    port: 6379
+    pool:
+      max-active: 100
+      max-idle: 100
+      max-wait: 1000
+      min-idle: 10
 
 #port
 server:
