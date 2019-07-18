@@ -29,4 +29,11 @@ public interface UserInfoServer {
      * @return
      */
     String getSessionID(String userName);
+
+    /**
+     * 清除登陆信息
+     * @param userName
+     * @return
+     */
+    void removeLoginStatus(String userName, String sessionID);
 }
