@@ -20,7 +20,7 @@ public class LoginResponseHandler extends SimpleChannelInboundHandler<LoginRespo
 
         // 创建登录对象
         LoginRequestPacket loginRequestPacket = new LoginRequestPacket();
-        loginRequestPacket.setUserId(UUID.randomUUID().toString());
+        loginRequestPacket.setSessionID(UUID.randomUUID().toString());
         loginRequestPacket.setUsername("flash");
         loginRequestPacket.setPassword("pwd");
 
@@ -31,14 +31,14 @@ public class LoginResponseHandler extends SimpleChannelInboundHandler<LoginRespo
     @Override
     protected void channelRead0(ChannelHandlerContext ctx, LoginResponsePacket loginResponsePacket) throws Exception {
         String userName = loginResponsePacket.getUserName();
-        String userId = loginResponsePacket.getUserId();
+        String sessionID = loginResponsePacket.getSessionID();
         if (loginResponsePacket.isSuccess()) {
             //注意这里为什么要给客户端的channel绑定，思考
             //将服务器和客户端看为一个对等方，那么服务端的channel绑定session是为了标识客户端，减少
             //鉴权等系列操作,客户channel这里绑定session的效果只用于客户机的标识，和服务器的channel是
             //独立的channel。
-            SessionUtil.bindSession(new Session(userId, userName), ctx.channel());
-            System.out.println("[" + userName + "]登录成功，userId 为: " + userId);
+            SessionUtil.bindSession(new Session(sessionID, userName), ctx.channel());
+            System.out.println("[" + userName + "]登录成功，sessionID 为: " + sessionID);
         } else {
             System.out.println(new Date() + ": 客户端登录失败，原因：" + loginResponsePacket.getReason());
         }

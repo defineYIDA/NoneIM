@@ -54,6 +54,9 @@ public class LoginRequestHandler extends SimpleChannelInboundHandler<LoginReques
                 //应该是用户id，通过接收方的id在去连接map里检查接收方是否活跃，活跃的话应该直接写到接收方的channel
                 //不活跃的话应该是使用某种缓存机制(mq,redis)，等接受方接入的时候再转发给他
                 SessionUtil.bindSession(new Session(sessionID, userName), ctx.channel());
+
+                //注册客户机连接的服务器信息到redis
+                userInfoServer.saveRouterInfo(userName, sessionID);
             } else {
                 loginResponsePacket.setSuccess(false);
                 loginResponsePacket.setReason("账号：" + userName + "已经登陆！");

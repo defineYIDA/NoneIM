@@ -31,11 +31,11 @@ public class LogoutRequestHandler extends SimpleChannelInboundHandler<LogoutRequ
     @Override
     protected void channelRead0(ChannelHandlerContext ctx, LogoutRequestPacket msg) {
         System.out.println("用户：["+ SessionUtil.getSession(ctx.channel()).getUserName() + "] 已注销！");
-        //清除redis的登陆信息
         String userName = SessionUtil.getSession(ctx.channel()).getUserName();
         String sessionID = SessionUtil.getSession(ctx.channel()).getSessionID();
-        userInfoServer.removeLoginStatus(userName, sessionID);
-        log.info(new Date() + ":[K: " + userName + ", V: " + sessionID + "] 移除成功!");
+        //清除redis的登陆信息,路由信息
+        userInfoServer.removeAllInfoInRedis(userName);
+        log.info(new Date() + "用户:[K: " + userName + ", V: " + sessionID + "] 的登陆信息，路由信息移除成功!");
         //清除对于channel
         SessionUtil.unBindSession(ctx.channel());
         LogoutResponsePacket logoutResponsePacket = new LogoutResponsePacket();

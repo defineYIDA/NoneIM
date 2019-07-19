@@ -13,7 +13,7 @@ import static com.none.common.protocol.command.Command.MESSAGE_RESPONSE;
 @Data
 public class MessageResponsePacket extends Packet {
 
-    private String fromUserId;
+    private String fromSessionID;
 
     private String fromUserName;
 
@@ -27,7 +27,7 @@ public class MessageResponsePacket extends Packet {
     public static MessageResponsePacket exceptionMsg(String msg) {
         MessageResponsePacket responsePacket = new MessageResponsePacket();
         responsePacket.setMessage(msg);
-        responsePacket.setFromUserId("Exception");
+        responsePacket.setFromSessionID("Exception");
         responsePacket.setFromUserName("Server");
         return responsePacket;
     }
