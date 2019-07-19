@@ -10,16 +10,16 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 public class Session {
-    private String userId;
+    private String sessionID;
     private String userName;
 
-    public Session(String userId, String userName) {
-        this.userId = userId;
+    public Session(String sessionID, String userName) {
+        this.sessionID = sessionID;
         this.userName = userName;
     }
 
     @Override
     public String toString() {
-        return userId + ":" + userName;
+        return sessionID + ":" + userName;
     }
 }

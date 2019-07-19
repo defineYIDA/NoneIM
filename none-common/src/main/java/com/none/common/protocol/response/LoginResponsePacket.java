@@ -12,7 +12,7 @@ import static com.none.common.protocol.command.Command.LOGIN_RESPONSE;
  */
 @Data
 public class LoginResponsePacket extends Packet {
-    private String userId;
+    private String sessionID;
 
     private String userName;
 

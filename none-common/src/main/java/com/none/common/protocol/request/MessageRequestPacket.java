@@ -15,12 +15,12 @@ import static com.none.common.protocol.command.Command.MESSAGE_REQUEST;
 @NoArgsConstructor
 public class MessageRequestPacket extends Packet {
 
-    private String toUserId;//消息接收方id
+    private String toUserName;//消息接收方
 
     private String message;
 
-    public MessageRequestPacket(String toUserId, String message) {
-        this.toUserId = toUserId;
+    public MessageRequestPacket(String toUserName, String message) {
+        this.toUserName = toUserName;
         this.message = message;
     }
 
