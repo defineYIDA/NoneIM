@@ -27,7 +27,6 @@
         <module>none-client</module>
         <module>none-server</module>
         <module>none-common</module>
-        <module>none-zk</module>
         <module>none-router</module>
         <module>none-proxy</module>
     </modules>
