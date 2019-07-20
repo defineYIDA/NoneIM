@@ -1,7 +1,7 @@
 package com.none.server;
 
 import com.none.server.config.AppConfig;
-import com.none.server.Server.RegistryZK;
+import com.none.server.server.RegistryZK;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;

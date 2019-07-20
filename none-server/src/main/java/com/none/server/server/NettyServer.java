@@ -1,4 +1,4 @@
-package com.none.server.Server;
+package com.none.server.server;
 
 import com.none.common.codec.PacketCodecHandler;
 import com.none.common.codec.Spliter;

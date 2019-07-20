@@ -1,8 +1,8 @@
-package com.none.server.Server.impl;
+package com.none.server.server.impl;
 
 import com.none.common.Const;
 import com.none.common.util.JSONUtil;
-import com.none.server.Server.UserInfoServer;
+import com.none.server.server.UserInfoServer;
 import com.none.server.config.AppConfig;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
