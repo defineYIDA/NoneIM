@@ -1,0 +1,18 @@
+package com.none.proxy.handler;
+
+import io.netty.channel.ChannelInitializer;
+import io.netty.channel.socket.SocketChannel;
+import io.netty.handler.logging.LogLevel;
+import io.netty.handler.logging.LoggingHandler;
+
+/**
+ * @Author: zl
+ * @Date: 2019/7/21 0:21
+ */
+public class ProxyHandler extends ChannelInitializer<SocketChannel> {
+    @Override
+    protected void initChannel(SocketChannel ch) throws Exception {
+        ch.pipeline().addLast(new LoggingHandler(LogLevel.INFO));
+        ch.pipeline().addLast(new FrontendHandler());
+    }
+}
