@@ -43,6 +43,6 @@ public class NettyProxy {
                 cause.printStackTrace();
                 log.info("代理监听端口[" + PROXY_PORT + "]失败");
             }
-        }).channel().closeFuture().sync();
+        });
     }
 }

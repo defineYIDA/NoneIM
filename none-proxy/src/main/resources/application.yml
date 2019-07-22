@@ -10,7 +10,7 @@ spring:
       max-wait: 1000
       min-idle: 10
 
-#port
+#proxy port
 proxy:
   port: 6666
 
@@ -26,5 +26,10 @@ zk:
   #zk注册的根节点
   root: /server
 
+#spring端口
 server:
   port: 8082
+
+#路由算法
+route:
+  algorithm: "none"
