@@ -1,4 +1,4 @@
-package com.none.server.Server;
+package com.none.server.server;
 
 import com.none.server.config.AppConfig;
 import com.none.server.util.SpringBeanFactory;

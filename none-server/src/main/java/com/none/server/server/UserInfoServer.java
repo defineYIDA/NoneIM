@@ -1,4 +1,4 @@
-package com.none.server.Server;
+package com.none.server.server;
 
 /**
  * @Author: zl
