@@ -2,6 +2,7 @@ package com.none.proxy.util;
 
 import io.netty.channel.Channel;
 
+import java.util.Iterator;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -29,5 +30,17 @@ public class Router {
 
     public static Channel getServerChannel(Channel k) {
         return forwordToServerMap.get(k);
+    }
+
+    /**
+     * 泛洪
+     * @param msg
+     */
+    public static void flooding(Object msg) {
+        Iterator<Channel> iterator = forwordToServerMap.values().iterator();
+        while (iterator.hasNext()) {
+            Channel channel = iterator.next();
+            channel.writeAndFlush(msg);
+        }
     }
 }
