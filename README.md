@@ -18,6 +18,7 @@ serialize:
 ### Solve
 
 [粘包和半包的原因使用WireShark分析](https://github.com/defineYIDA/NoneIM/issues/6)
+
 [集群模式下消息转发的方案如何选择？](https://github.com/defineYIDA/NoneIM/issues/13)
 
 ### future
