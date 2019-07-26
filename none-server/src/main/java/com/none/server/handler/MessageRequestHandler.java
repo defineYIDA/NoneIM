@@ -4,6 +4,7 @@ import com.none.common.protocol.request.MessageRequestPacket;
 import com.none.common.protocol.response.MessageResponsePacket;
 import com.none.common.session.Session;
 import com.none.common.util.SessionUtil;
+import com.none.common.util.ThreadPollUtil;
 import com.none.server.server.UserInfoServer;
 import com.none.server.server.impl.UserInfoServerImpl;
 import com.none.server.util.SpringBeanFactory;
@@ -31,18 +32,7 @@ public class MessageRequestHandler extends SimpleChannelInboundHandler<MessageRe
     protected ThreadPoolExecutor pool;
 
     private MessageRequestHandler() {
-        ThreadFactory threadFactory = new ThreadFactory() {
-            private int count;
-
-            @Override
-            public Thread newThread(Runnable r) {
-                return new Thread(r, "Worker Pool-" + count++);
-            }
-        };
-        this.pool = new ThreadPoolExecutor(100, 100, 1,
-                TimeUnit.SECONDS,
-                new ArrayBlockingQueue<>(200),
-                threadFactory, new ThreadPoolExecutor.CallerRunsPolicy());
+        this.pool = ThreadPollUtil.createThreadPoll("Server-Worker");
     }
 
     @Override

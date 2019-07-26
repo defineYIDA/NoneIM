@@ -21,8 +21,10 @@ public class SessionUtil {
 
     private static final Map<String, ChannelGroup> channelGroupMap = new ConcurrentHashMap<>();
 
+
     //<username, sessionID>映射关系和redis的缓存配合使用
     private static final Map<String, String> userSessionIDMap = new ConcurrentHashMap<>();
+
 
     private static void markAsLogin(Channel channel, Session session) {
         //注意这个参数的作用域，session域
@@ -62,4 +64,9 @@ public class SessionUtil {
     public static ChannelGroup getChannelGroup(String groupId) {
         return channelGroupMap.get(groupId);
     }
+
+    public static void bindSession(String clientInfo, Channel channel) {
+        channelMap.put(clientInfo, channel);
+    }
+
 }
