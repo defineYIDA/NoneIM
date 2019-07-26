@@ -1,15 +1,14 @@
 package com.none.proxy.handler;
 
 import com.none.common.protocol.Packet;
-import io.netty.bootstrap.Bootstrap;
+import com.none.common.util.ThreadPollUtil;
+import com.none.proxy.conn.ConnServer;
+import com.none.proxy.util.Router;
 import io.netty.channel.*;
-import io.netty.channel.nio.NioEventLoopGroup;
-import io.netty.channel.socket.SocketChannel;
-import io.netty.handler.logging.LogLevel;
-import io.netty.handler.logging.LoggingHandler;
 import lombok.extern.slf4j.Slf4j;
 
 import java.net.InetSocketAddress;
+import java.util.concurrent.ThreadPoolExecutor;
 
 /**
  * @Author: zl
@@ -20,36 +19,33 @@ public class FrontendHandler extends SimpleChannelInboundHandler<Packet> {
 
     private volatile Channel outboundChannel;
 
+    protected ThreadPoolExecutor pool;
+
+    public FrontendHandler() {
+        this.pool = ThreadPollUtil.createThreadPoll("Proxy-Worker");
+    }
+
     @Override
     public void channelActive(ChannelHandlerContext ctx) throws Exception {
-        final Channel inboundChannel = ctx.channel();
-        InetSocketAddress address = (InetSocketAddress) inboundChannel.remoteAddress();
-        log.info("【IP:{} port:{}】", address.getAddress(), address.getPort() + "连接代理成功!");
-        // Start the connection attempt.
-        Bootstrap b = new Bootstrap();
-        EventLoopGroup workerGroup = new NioEventLoopGroup();
-        b.group(workerGroup)
-                .channel(ctx.channel().getClass())
-                .option(ChannelOption.AUTO_READ, true)
-                .handler(new ChannelInitializer<SocketChannel>() {
-                    @Override
-                    public void initChannel(SocketChannel ch) throws Exception {
-                        ChannelPipeline p = ch.pipeline();
-
-                        //p.addLast(new LoggingHandler(LogLevel.INFO));
-                        p.addLast(new BackendHandler(inboundChannel), new LoggingHandler(LogLevel.INFO));
-                    }
-                });
-        ChannelFuture f = b.connect("127.0.0.1", 8080);
-        outboundChannel = f.channel();
-
-        f.addListener(future -> {
-            if (future.isSuccess()) {
-                // connection complete start to read first data
+        pool.submit(() -> {
+            final Channel inboundChannel = ctx.channel();
+            InetSocketAddress address = (InetSocketAddress) inboundChannel.remoteAddress();
+            log.info("【IP:{} port:{}】", address.getAddress(), address.getPort() + "连接代理成功!");
+            //获得需要转发的Channel
+            if (Router.getServerChannel(inboundChannel) == null) {
+                ConnServer conn = new ConnServer();
+                //outboundChannel = conn.connIMServer("169.254.1.212", 8080, address.toString());
+                outboundChannel = conn.connIMServer(address.toString());
+                if (outboundChannel == null) {
+                    log.error("连接服务异常！");
+                    //TODO feedback exception msg
+                    return;
+                }
+                Router.bindForwordInfo(inboundChannel, outboundChannel);
+            }
+            if (outboundChannel.isActive()) {
+                //todo mean?
                 inboundChannel.read();
-            } else {
-                // Close the connection if the connection attempt has failed.
-                inboundChannel.close();
             }
         });
     }

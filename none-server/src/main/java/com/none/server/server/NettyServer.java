@@ -55,15 +55,15 @@ public class NettyServer {
 
                     }
                 });
-        int port =imServerPort;
-        serverBootstrap.bind(port).addListener( future-> {
-            if(future.isSuccess()){
-                log.info("监听端口["+port+"]成功");
-            }else {
+        int port = imServerPort;
+        serverBootstrap.bind(port).addListener(future -> {
+            if (future.isSuccess()) {
+                log.info("监听端口[" + port + "]成功");
+            } else {
                 //从future中检索Throwable
-                Throwable cause=future.cause();
+                Throwable cause = future.cause();
                 cause.printStackTrace();
-                log.info("监听端口["+port+"]失败");
+                log.info("监听端口[" + port + "]失败");
             }
         });
         //方式一： new GenericFutureListener<Future<? super Void>>()

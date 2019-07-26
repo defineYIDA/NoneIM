@@ -3,6 +3,8 @@ package com.none.proxy.config;
 import com.google.common.cache.CacheBuilder;
 import com.google.common.cache.CacheLoader;
 import com.google.common.cache.LoadingCache;
+import com.none.proxy.router.RouterAlgorithm;
+import com.none.proxy.router.round.RoundRobin;
 import org.I0Itec.zkclient.ZkClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -49,4 +51,11 @@ public class BeanConfig {
         redisTemplate.afterPropertiesSet();
         return redisTemplate;
     }
+
+    @Bean
+    public RouterAlgorithm createRouterAlgorithm() {
+        //TODO 一致性hash算法
+        return new RoundRobin();
+    }
+
 }
