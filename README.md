@@ -9,7 +9,7 @@
 </div>
 
 
-![](https://img.shields.io/badge/NONE--IM-%E4%BB%8B%E7%BB%8D-9cf)
+## ![](https://img.shields.io/badge/NONE--IM-%E4%BB%8B%E7%BB%8D-9cf)
 
 `None-IM`是一款分布式可横向扩展的IM系统。
 
@@ -20,13 +20,13 @@
 - 中间`porxy`层负责`Cilent`的接入和`IM`服务的负载均衡
 - `porxy`层提供内网穿透能力
 
----
-![](https://img.shields.io/badge/NONE--IM-%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84-9cf)
+
+## ![](https://img.shields.io/badge/NONE--IM-%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84-9cf)
 
 
 ---
 
-![](https://img.shields.io/badge/NONE--IM-%E6%A0%B8%E5%BF%83%E4%BE%9D%E8%B5%96-9cf)
+## ![](https://img.shields.io/badge/NONE--IM-%E6%A0%B8%E5%BF%83%E4%BE%9D%E8%B5%96-9cf)
 
 网络框架：
 ```
@@ -41,15 +41,15 @@
 <artifactId>fastjson</artifactId>
 <version>1.2.29</version>
 ```
----
-![](https://img.shields.io/badge/NONE--IM-%E9%97%AE%E9%A2%98-9cf)
+
+## ![](https://img.shields.io/badge/NONE--IM-%E9%97%AE%E9%A2%98-9cf)
 
 [粘包和半包的原因使用WireShark分析](https://github.com/defineYIDA/NoneIM/issues/6)
 
 [集群模式下消息转发的方案如何选择？](https://github.com/defineYIDA/NoneIM/issues/13)
 
----
-![](https://img.shields.io/badge/NONE--IM-TODO-9cf)
+
+## ![](https://img.shields.io/badge/NONE--IM-TODO-9cf)
 
 - [ ] 服务器消息推送,针对在线和离线用户
 
