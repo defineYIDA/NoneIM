@@ -1,30 +1,55 @@
-<center>![](https://github.com/defineYIDA/hx/blob/master/none5.png)</center>
-
 <div align="center">
     <a href=""> <img src="https://github.com/defineYIDA/hx/blob/master/none5.png"></a>
 </div>
 
-### Dependencies
+<div align="center">
+    <a href=""> <img alt="GitHub stars" src="https://img.shields.io/github/stars/defineYIDA/NoneIM?style=social"></a>
+    <a href=""> <img alt="GitHub forks" src="https://img.shields.io/github/forks/defineYIDA/NoneIM?style=social"></a>
+    <a href=""> <img alt="Bitbucket open issues" src="https://img.shields.io/bitbucket/issues/defineYIDA/NoneIM?style=social"></a>
+</div>
 
-framework:
+
+![](https://img.shields.io/badge/NONE--IM-%E4%BB%8B%E7%BB%8D-9cf)
+
+`None-IM`是一款分布式可横向扩展的IM系统。
+
+目前，`None-IM`处于开发阶段，已经实现一下下功能：
+
+- 登陆，注册，私聊，群聊等IM基础功能
+- `IM`服务的集群--注册与发现
+- 中间`porxy`层负责`Cilent`的接入和`IM`服务的负载均衡
+- `porxy`层提供内网穿透能力
+
+---
+![](https://img.shields.io/badge/NONE--IM-%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84-9cf)
+
+
+---
+
+![](https://img.shields.io/badge/NONE--IM-%E6%A0%B8%E5%BF%83%E4%BE%9D%E8%B5%96-9cf)
+
+网络框架：
 ```
 <groupId>io.netty</groupId>
 <artifactId>netty-all</artifactId>
 <version>4.1.6.Final</version>
 ```
-serialize:
+
+自定义协议的序列化(serialize):
 ```
 <groupId>com.alibaba</groupId>
 <artifactId>fastjson</artifactId>
 <version>1.2.29</version>
 ```
-### Solve
+---
+![](https://img.shields.io/badge/NONE--IM-%E9%97%AE%E9%A2%98-9cf)
 
 [粘包和半包的原因使用WireShark分析](https://github.com/defineYIDA/NoneIM/issues/6)
 
 [集群模式下消息转发的方案如何选择？](https://github.com/defineYIDA/NoneIM/issues/13)
 
-### future
+---
+![](https://img.shields.io/badge/NONE--IM-TODO-9cf)
 
 - [ ] 服务器消息推送,针对在线和离线用户
 
