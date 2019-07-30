@@ -5,7 +5,7 @@
 <div align="center">
     <a href=""> <img alt="GitHub stars" src="https://img.shields.io/github/stars/defineYIDA/NoneIM?style=social"></a>
     <a href=""> <img alt="GitHub forks" src="https://img.shields.io/github/forks/defineYIDA/NoneIM?style=social"></a>
-    <a href=""> <img alt="Bitbucket open issues" src="https://img.shields.io/bitbucket/issues/defineYIDA/NoneIM?style=social"></a>
+    <a href=""> <img alt="GitHub issues" src="https://img.shields.io/github/issues-raw/defineYIDA/NoneIM?style=social"></a>
 </div>
 
 
