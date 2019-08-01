@@ -23,8 +23,7 @@
 
 ## ![](https://img.shields.io/badge/NONE--IM-%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84-9cf)
 
-
----
+![](https://github.com/defineYIDA/hx/blob/master/none_jg.png)
 
 ## ![](https://img.shields.io/badge/NONE--IM-%E6%A0%B8%E5%BF%83%E4%BE%9D%E8%B5%96-9cf)
 
@@ -56,8 +55,6 @@
 - [x] Redis对用户信息的缓存
 
 - [x] proxy实现内网穿透
-
-- [x] 新增router层实现负载均衡
 
 - [x] zookeeper 实现服务的注册和发现
 
