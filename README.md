@@ -1,5 +1,5 @@
 <div align="center">
-    <a href=""> <img src="https://github.com/defineYIDA/hx/blob/master/none5.png"></a>
+    <a href=""> <img src="https://i.loli.net/2019/08/03/AO8mcDn63NZtFsf.png" ></a>
 </div>
 
 <div align="center">
@@ -23,7 +23,8 @@
 
 ## ![](https://img.shields.io/badge/NONE--IM-%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84-9cf)
 
-![](https://github.com/defineYIDA/hx/blob/master/none_jg.png)
+![none_jg.png](https://i.loli.net/2019/08/03/1P4pbcszrEyqYu5.png)
+
 
 ## ![](https://img.shields.io/badge/NONE--IM-%E6%A0%B8%E5%BF%83%E4%BE%9D%E8%B5%96-9cf)
 
