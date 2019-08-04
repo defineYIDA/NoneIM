@@ -22,6 +22,16 @@
 
 
 ## ![](https://img.shields.io/badge/NONE--IM-%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84-9cf)
+**文件目录：**
+~~~
+None-IM  目录
+├─none-client         客户端
+├─none-conmmon        公共代码
+├─none-proxy          代理层
+├─none-server         服务端
+~~~
+
+**架构示意图：**
 
 ![none_jg.png](https://i.loli.net/2019/08/03/1P4pbcszrEyqYu5.png)
 
