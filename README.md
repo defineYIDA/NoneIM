@@ -1,5 +1,5 @@
 <div align="center">
-    <a href=""> <img src="https://github.com/defineYIDA/hx/blob/master/none5.png"></a>
+    <a href=""> <img src="https://i.loli.net/2019/08/03/AO8mcDn63NZtFsf.png" ></a>
 </div>
 
 <div align="center">
@@ -13,7 +13,7 @@
 
 `None-IM`是一款分布式可横向扩展的IM系统。
 
-目前，`None-IM`处于开发阶段，已经实现一下下功能：
+目前，`None-IM`处于开发阶段，已经实现以下功能：
 
 - 登陆，注册，私聊，群聊等IM基础功能
 - `IM`服务的集群--注册与发现
@@ -22,8 +22,19 @@
 
 
 ## ![](https://img.shields.io/badge/NONE--IM-%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84-9cf)
+**文件目录：**
+~~~
+None-IM  目录
+├─none-client         客户端
+├─none-conmmon        公共代码
+├─none-proxy          代理层
+├─none-server         服务端
+~~~
 
-![](https://github.com/defineYIDA/hx/blob/master/none_jg.png)
+**架构示意图：**
+
+![none_jg.png](https://i.loli.net/2019/08/03/1P4pbcszrEyqYu5.png)
+
 
 ## ![](https://img.shields.io/badge/NONE--IM-%E6%A0%B8%E5%BF%83%E4%BE%9D%E8%B5%96-9cf)
 
